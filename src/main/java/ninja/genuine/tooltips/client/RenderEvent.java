@@ -42,7 +42,7 @@ public class RenderEvent {
 
 		target = getMouseOver(mc, event.partialTicks);
 		if (!(Objects.isNull(target) || Objects.isNull(target.getItem()))) {
-			if (Objects.isNull(cache) || cache.getEntity() != target.getEntity())
+			if (Objects.isNull(cache) || cache.getEntity() != target.getEntity() || cache.getTarget().getItem() != target.getItem())
 				cache = new Tooltip(Minecraft.getMinecraft().thePlayer, target);
 			cache.renderTooltip3D(mc, event.partialTicks);
 		}

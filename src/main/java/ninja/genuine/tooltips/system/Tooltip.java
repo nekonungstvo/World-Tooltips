@@ -68,15 +68,6 @@ public class Tooltip {
 
     List<String> text = new ArrayList<>();
 
-//    public Tooltip(EntityPlayer player, EntityItem entity) {
-//        this(player,
-//                new TooltipTarget(
-//                        entity.getItem(),
-//                        entity
-//                )
-//        );
-//    }
-
     public Tooltip(EntityPlayer player, TooltipTarget target) {
         this.target = target;
         syncSettings();
@@ -100,6 +91,10 @@ public class Tooltip {
 
     public Entity getEntity() {
         return this.target.getEntity();
+    }
+
+    public TooltipTarget getTarget() {
+        return this.target;
     }
 
     public int size() {
