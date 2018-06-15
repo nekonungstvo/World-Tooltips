@@ -109,8 +109,8 @@ public class RenderEvent {
         entity = getMouseOver(mc, partialTicks, EntityItem.class);
         if (!Objects.isNull(entity)) return new TooltipTarget((EntityItem) entity);
 
-        entity = getMouseOver(mc, partialTicks, EntityPlayer.class);
-        if (!Objects.isNull(entity)) return new TooltipTarget((EntityPlayer) entity);
+//        entity = getMouseOver(mc, partialTicks, EntityPlayer.class);
+//        if (!Objects.isNull(entity)) return new TooltipTarget((EntityPlayer) entity);
 
         return null;
     }
