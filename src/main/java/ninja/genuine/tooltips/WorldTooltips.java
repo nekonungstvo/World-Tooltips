@@ -1,6 +1,7 @@
 package ninja.genuine.tooltips;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -10,10 +11,14 @@ import cpw.mods.fml.common.event.FMLModDisabledEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property.Type;
 import ninja.genuine.tooltips.client.RenderEvent;
+import ninja.genuine.tooltips.client.render.RenderItemFrameNoNT;
 import ninja.genuine.tooltips.system.Tooltip;
 
 @Mod(modid = WorldTooltips.MODID, name = WorldTooltips.NAME, version = WorldTooltips.VERSION, canBeDeactivated = true, useMetadata = true, guiFactory = "ninja.genuine.tooltips.client.TooltipsGuiFactory")
@@ -57,6 +62,14 @@ public class WorldTooltips {
 	@EventHandler
 	public void post(FMLPostInitializationEvent event) {
 		events.post();
+
+        RenderItemFrameNoNT render = new RenderItemFrameNoNT();
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityItemFrame.class, render
+        );
+
+        RenderManager.instance.entityRenderMap.put(EntityItemFrame.class, render);
+
 	}
 
 	public void enable() {
